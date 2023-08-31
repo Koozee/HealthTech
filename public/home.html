@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../src/css/img/logo_healthtech 1.png" rel="shorcut icon">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@600&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <title>HealthTech</title>
+    <style>
+        .cts {
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 7px;
+            border: 1px solid rgb(61, 106, 255);
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: transparent;
+            color: black;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 transparent;
+            -webkit-transition: all 0.2s ease-in;
+            -moz-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+        }
+
+        .cts:hover {
+            background: rgb(61, 106, 255);
+            box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        .cts:hover::before {
+            -webkit-animation: sh02 0.5s 0s linear;
+            -moz-animation: sh02 0.5s 0s linear;
+            animation: sh02 0.5s 0s linear;
+        }
+
+        .cts::before {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 86%;
+            position: absolute;
+            top: 7%;
+            left: 0%;
+            opacity: 0;
+            background: #fff;
+            box-shadow: 0 0 50px 30px #fff;
+            -webkit-transform: skewX(-20deg);
+            -moz-transform: skewX(-20deg);
+            -ms-transform: skewX(-20deg);
+            -o-transform: skewX(-20deg);
+            transform: skewX(-20deg);
+        }
+
+        @keyframes sh02 {
+            from {
+                opacity: 0;
+                left: 0%;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                left: 100%;
+            }
+        }
+
+        .cts:active {
+            box-shadow: 0 0 0 0 transparent;
+            -webkit-transition: box-shadow 0.2s ease-in;
+            -moz-transition: box-shadow 0.2s ease-in;
+            transition: box-shadow 0.2s ease-in;
+        }
+
+        .btn {
+            background: linear-gradient(to top, #00154c, #12376e, #23487f);
+            color: #fff;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .btn span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: top 0.5s;
+        }
+
+        .btn-text-one {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .btn-text-two {
+            position: absolute;
+            width: 100%;
+            top: 150%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .btn:hover .btn-text-one {
+            top: -100%;
+        }
+
+        .btn:hover .btn-text-two {
+            top: 50%;
+        }
+
+        .menu {
+            position: fixed;
+            bottom: -59px;
+            right: -90px;
+            width: 280px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .menu .toggle {
+            position: relative;
+            height: 60px;
+            width: 60px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 1.25s;
+            z-index: 5;
+        }
+
+        .menu.active .toggle {
+            transform: rotate(360deg);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15),
+                0 0 0 2px #333,
+                0 0 0 8px #fff;
+        }
+
+        .menu li {
+            position: absolute;
+            top: 50px;
+            left: -40px;
+            list-style: none;
+            transition: 0.5s;
+            transform: rotate(calc(360deg/8 * var(--i)));
+            transform-origin: 120px;
+            scale: 0;
+            transition-delay: calc(0.05s * var(--i));
+        }
+
+        .menu.active li {
+            scale: 1;
+        }
+
+        .menu li a {
+            position: relative;
+            display: flex;
+            transform: rotate(calc(360deg/-8 * var(--i)));
+            width: 40px;
+            height: 40px;
+            background-color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.75rem;
+            color: var(--clr);
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            transition: 0.5s;
+        }
+
+        .menu li:hover a {
+            font-size: 2.5rem;
+            box-shadow: 0 0 0 2px var(--clr),
+                0 0 0 6px #fff;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 overflow-x-hidden">
+    <div id="success_alert" class="container fixed bottom-6 z-50 hidden">
+        <div class="mx-auto w-[60vw] flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Berhasil Mendaftar!</span> Terima kasih telah percaya pada kami, silahkan
+                tunggu informasi dari kami.
+            </div>
+        </div>
+    </div>
+
+    <!-- header start -->
+    <header class=" bg-slate-50 top-0 left-0 w-full h-max flex items-center">
+        <div class="container">
+            <div class="flex items-center relative lg:pl-10">
+                <a href="#">
+                    <img src="../src/css/img/logo final.svg" class="w-[50vw] mr-5" alt="logo">
+                </a>
+
+                <!-- tombol hamburger  -->
+                <div class="flex items-center px-4">
+                    <button id="hamburger-btn" name="hamburger-btn" type="button"
+                        class="block absolute right-10 lg:hidden">
+                        <span class="hamburger-line origin-top-left transition duration-300 ease-in-out"></span>
+                        <span class="hamburger-line duration-300 ease-in-out"></span>
+                        <span class="hamburger-line origin-bottom-left duration-300 ease-in-out"></span>
+                    </button>
+                    <!-- navbar -->
+                    <nav id="nav-menu"
+                        class="absolute hidden py-4 bg-slate-50 rounded-xl max-w-[250px] w-full right-2 top-full lg:block lg:static lg:w-screen lg:max-w-full lg:pl-80 lg:bg-transparent lg:rounded-none lg:mr-5">
+                        <ul class="block lg:flex font-Lato">
+                            <li class="group"><a href="#" class="py-2 mx-3 flex group-hover:text-blue-800">Home</a></li>
+                            <li class="group"><a href="#" class="py-2 mx-3 flex group-hover:text-blue-800">Profile</a>
+                            </li>
+                            <li class="group"><a href="#service"
+                                    class="py-2 mx-3 flex group-hover:text-blue-800">Service</a></li>
+                            <li class="group"><a href="#testimonial"
+                                    class="py-2 mx-3 flex group-hover:text-blue-800">Insight</a></li>
+                            <li class="group"><a href="#contact"
+                                    class="py-2 mx-3 flex group-hover:text-blue-800">Contact</a></li>
+                            <li class="group hidden lg:block"><a href="#form"><button class="cts">
+                                        Bergabung
+                                    </button></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <!-- alert -->
+
+    <div id="fail_alert" class="continer fixed bottom-0 hidden">
+        <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+            </div>
+        </div>
+    </div>
+    <!-- alert ends here -->
+
+    <!-- section home -->
+    <main id="home" class="my-14 lg:grid lg:grid-cols-2"
+        style="background-image: url(../src/css/img/abbe-sublett-nxZDMUQhN4o-unsplash.jpg); background-size: cover; background-repeat: no-repeat;">
+        <div class="container">
+            <div class="w-full flex flex-wrap">
+                <h1 class="text-white mx-auto p-5 font-extrabold font-Montserrat lg:mb-10">Selamat datang di HealthTech,
+                </h1>
+                <h2 class="text-white mx-auto p-6 font-bold font-Poppins text-center lg:mb-10">Ruang kreatif bagi para
+                    inovator
+                    dan
+                    wirausahawan yang
+                    bersemangat dalam meretas masa depan Bangsa
+                    dan Negara.</h2>
+                <button onclick="moveservice()" class="btn mx-auto w-52 h-14" type="button">
+                    <span class="btn-text-one">Temukan Solusi Anda</span>
+                    <span class="btn-text-two">Layanan Kami >></span>
+                </button>
+            </div>
+        </div>
+        <div>
+            <img src="../src/css/img/sebastian-herrmann-NbtIDoFKGO8-unsplash-removebg-preview.png"
+                class="max-w-full mx-auto" alt="bg">
+        </div>
+    </main>
+    <!-- end section home -->
+
+    <!-- section service -->
+    <section class="py-2" id="service" class="pt-16">
+        <div class="container">
+            <div class="w-screen">
+                <h1 class=" uppercase mb-2 text-center font-extrabold font-Montserrat md:text-xl">Layanan Kami</h1>
+                <h2 class=" mb-10 text-center font-bold font-Montserrat md:text-xl">Untuk Membantu Usaha dan Bisnis Anda
+                </h2>
+            </div>
+        </div>
+        <div class="container md:mx-auto">
+            <div class="px-5 md:grid md:grid-cols-2 md:gap-4 ">
+                <div class="rounded-md mb-10 shadow-xl overflow-hidden bg-transparent border-4 border-slate-100"><img
+                        src="../src/css/img/Free Vector _ Seminar concept illustration.jpeg" alt="img0">
+                    <h3 class="font-semibold text-lg text-center ">Training and Consulting</h3>
+                    <p class="px-4 py-4 text-justify font-Poppins">Penawaran kursus interaktif yang mencakup berbagai
+                        topik, seperti
+                        manajemen stres, rutinitas kesehatan, latihan fisik di tempat kerja, pola makan sehat, dan
+                        teknik relaksasi. Materi ini akan disajikan dalam format video, artikel, dan kuis interaktif.
+                    </p>
+                </div>
+                <div class="rounded-md mb-10 shadow-xl overflow-hidden bg-transparent border-4 border-slate-100"><img
+                        src="../src/css/img/webinar.svg" width="w-full" alt="img0">
+                    <h3 class="font-semibold text-lg text-center ">Webinar Dengan Para Ahli</h3>
+                    <p class="px-4 py-4 text-justify font-Poppins">Mengadakan sesi webinar langsung dengan ahli
+                        kesehatan dan
+                        kewirausahaan. Para wirausaha dapat mengajukan pertanyaan dan mendapatkan panduan langsung dari
+                        para pakar dalam berbagai bidang terkait.</p>
+                </div>
+                <div class="rounded-md mb-10 shadow-xl overflow-hidden bg-transparent border-4 border-slate-100"><img
+                        src="../src/css/img/online-doctor.svg" width="w-full" alt="img0">
+                    <h3 class="font-semibold text-lg text-center py-3">Tracking Kesehatan Pribadi</h3>
+                    <p class="px-4 py-4 text-justify font-Poppins">Integrasi dengan aplikasi pelacak kesehatan atau
+                        perangkat
+                        wearable yang memungkinkan wirausaha melacak dan memantau kesehatan fisik dan mental mereka.
+                        Data ini dapat digunakan untuk memberikan rekomendasi yang lebih personal.</p>
+                </div>
+                <div class="rounded-md mb-10 shadow-xl overflow-hidden bg-transparent border-4 border-slate-100"><img
+                        src="../src/css/img/network-community.jpg" alt="img0">
+                    <h3 class="font-semibold text-lg text-center ">Dukungan Komunitas</h3>
+                    <p class="px-4 py-4 text-justify font-Poppins">Platform ini akan memiliki area komunitas di mana
+                        para wirausaha
+                        dapat berinteraksi, berbagi pengalaman, dan memberikan dukungan satu sama lain. Ini dapat
+                        menjadi tempat untuk berdiskusi tentang tantangan kesehatan yang dihadapi wirausaha dan strategi
+                        yang efektif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end section service -->
+
+    <!-- section testimonials -->
+    <section id="testimonial" class="pt-16 md:grid md:grid-cols-2 md:gap-3 md:items-center md:text-left">
+        <div class="container">
+            <div class="text-center w-screen flex flex-col md:w-full">
+                <h1 class="font-bold text-lg font-Montserrat ">Client Luar Biasa HealthTech</h1>
+                <h2 class="font-medium text-lg my-4 font-Poppins">Kami dengan bangga mempersembahkan serangkaian
+                    testimonial menggambarkan pengalaman luar
+                    biasa para client dalam layanan konsultasi bisnis dan kesehatan kami.</h2>
+                <button type="button"
+                    class=" w-max mx-auto my-7 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Cek Selengkapnya
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+        <div class="container">
+
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                    <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="../src/css/img/mikita-yo-Lozf1TNPC6M-unsplash.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="../src/css/img/mikita-yo-zvuHl41otDg-unsplash.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="../src/css/img/mikolaj-felinski-7_KrSbH0WTg-unsplash.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="../src/css/img/tim-mossholder-5i_0w9tUk2Q-unsplash.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="../src/css/img/christian-gabi-fLBAwYeSKHA-unsplash.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                </div>
+                <!-- Slider indicators -->
+                <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                        data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                        data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                        data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                        data-carousel-slide-to="3"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                        data-carousel-slide-to="4"></button>
+                </div>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- end section testimonials -->
+
+    <!-- section kelebihan -->
+    <section id="kelebihan" class="pt-16">
+        <div class="container">
+            <div class="p-3 w-screen">
+                <h2 class="text-center font-bold font-Montserrat text-2xl p-2">HealthTech</h2>
+                <h1 class="text-center font-Poppins p-4">"Solusi Kami adalah Sukses Anda: <span
+                        class="font-bold text-yellow-300">Layanan Tanpa
+                        Batas"</span></h1>
+                <h3 class="text-center font-Poppins">Kami hadir memberikan layanan optimal bagi kesuksesan bisnis Anda
+                    melalui:
+                </h3>
+            </div>
+        </div>
+        <!-- poin kelebihan -->
+        <div class="container mx-auto">
+            <div class="px-4 md:grid md:grid-cols-2 md:gap-2">
+                <div class="relative my-20 md:w-4/5 md:justify-self-center group ">
+                    <div
+                        class="rounded-md shadow-md overflow-hidden bg-transparent border-4 border-slate-50 group-hover:shadow-2xl group-hover:border-yellow-300 ">
+                        <img src="../src/css/img/lamp.jpg" alt="img0"
+                            class="w-[90px] h-[90px] absolute -top-10 left-1/2 -translate-x-12 rounded-lg mx-auto">
+                        <h3 class="font-semibold text-lg text-center pt-14 group-hover:scale-105">Solusi Berfokus
+                            Wirausaha</h3>
+                        <p class="px-4 py-4 text-justify font-Poppins group-hover:scale-105">Platform kami menawarkan
+                            kursus dan materi
+                            pelatihan yang
+                            dikhususkan untuk kebutuhan unik wirausaha. Kami memahami bahwa waktu adalah aset berharga,
+                            jadi semua konten disesuaikan untuk membantu wirausaha tetap produktif sambil menjaga
+                            kesehatan.</p>
+                    </div>
+                </div>
+                <div class="relative my-20 md:w-4/5 md:justify-self-center group">
+                    <div
+                        class="rounded-md shadow-md overflow-hidden bg-transparent border-4 border-slate-50 group-hover:shadow-2xl group-hover:border-yellow-300 ">
+                        <img src="../src/css/img/book-logo.jpg" alt="img0"
+                            class="w-[90px] h-[90px] absolute -top-10 left-1/2 -translate-x-12 rounded-lg mx-auto">
+                        <h3 class="font-semibold text-lg text-center pt-14 group-hover:scale-105">Pendekatan Berbasis
+                            Ahli</h3>
+                        <p class="px-4 py-4 text-justify font-Poppins group-hover:scale-105"> Kami bekerja sama dengan
+                            para ahli kesehatan
+                            terkemuka yang
+                            memiliki pengalaman dalam mendukung wirausaha. Webinar dan kursus yang dipandu oleh mereka
+                            memberikan panduan berdasarkan pengetahuan terkini dan praktik terbaik.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative my-20 md:w-4/5 md:justify-self-center group">
+                    <div
+                        class="rounded-md shadow-md overflow-hidden bg-transparent border-4 border-slate-50 group-hover:shadow-2xl group-hover:border-yellow-300 ">
+                        <img src="../src/css/img/community-logo.png" alt="img0"
+                            class="w-[90px] h-[90px] absolute -top-10 left-1/2 -translate-x-12 rounded-lg mx-auto">
+                        <h3 class="font-semibold text-lg text-center pt-14 group-hover:scale-105">Interaksi dalam
+                            Komunitas Berdedikasi</h3>
+                        <p class="px-4 py-4 text-justify font-Poppins group-hover:scale-105">Bergabunglah dengan
+                            komunitas kami yang terdiri
+                            dari wirausaha
+                            dengan tujuan yang sama: mengintegrasikan kesehatan dalam perjalanan bisnis. Dengan
+                            berinteraksi, berbagi pengalaman, dan memberi dukungan satu sama lain, Anda tidak perlu
+                            merasa sendirian dalam perjalanan ini.</p>
+                    </div>
+                </div>
+                <div class="relative my-20 md:w-4/5 md:justify-self-center group">
+                    <div
+                        class="rounded-md shadow-md overflow-hidden bg-transparent border-4 border-slate-50 group-hover:shadow-2xl group-hover:border-yellow-300 ">
+                        <img src="../src/css/img/four_blue_puzzle_pieces.svg" alt="img0"
+                            class="w-[90px] h-[90px] absolute -top-10 left-1/2 -translate-x-12 rounded-lg mx-auto">
+                        <h3 class="font-semibold text-lg text-center pt-14 group-hover:scale-105">Kustomisasi dan
+                            Pelacakan Kemajuan</h3>
+                        <p class="px-4 py-4 text-justify font-Poppins group-hover:scale-105">Platform kami tidak hanya
+                            memberikan pengetahuan,
+                            tetapi juga
+                            dukungan dalam mengaplikasikannya dalam kehidupan sehari-hari. Dengan fitur pelacakan
+                            kesehatan dan rencana aksi pribadi, Anda dapat melihat perkembangan Anda dan menerapkan
+                            langkah-langkah konkret untuk kesehatan yang lebih baik.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- end section kelebihan -->
+
+    <article id="activity" name="activity" class="mb-10">
+        <div class="container">
+            <h1 class="text-center py-10 font-Montserrat text-2xl">Kegiatan Terbaru HealthTech</h1>
+        </div>
+
+        <div id="default-carousel" class="relative w-full mx-auto md:translate-x-10" data-carousel="slide">
+            <!-- Carousel wrapper -->
+            <div class="relative h-56 overflow-hidden rounded-lg md:h-96 md:w-[70vw] md:mx-auto">
+                <!-- Item 1 -->
+                <div class="hidden duration-700 ease-in-out group" data-carousel-item>
+                    <img src="../src/css/img/Business people meeting in office, top view.jpeg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50 group-hover:opacity-100"
+                        alt="...">
+                    <p
+                        class="font-extrabold font-Montserrat w-full absolute z-50 bottom-10 text-center text-black group-hover:text-white group-hover:bg-black/50">
+                        Diskusi Bersama</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="hidden duration-700 ease-in-out group" data-carousel-item>
+                    <img src="../src/css/img/Keys to Success Meeting - Dallas, Texas August 2014.jpeg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50 group-hover:opacity-100"
+                        alt="...">
+                    <p
+                        class="font-extrabold font-Montserrat w-full absolute z-50 bottom-10 text-center text-black group-hover:text-white group-hover:bg-black/50">
+                        Rapat Staff HealthTech</p>
+                </div>
+                <!-- Item 3 -->
+                <div class="hidden duration-700 ease-in-out group" data-carousel-item>
+                    <img src="../src/css/img/young-asia-businessman-wear-headphones-using-laptop-talk-colleagues-about-plan-video-call-while-work-from-home-living-room.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <p
+                        class="font-extrabold font-Montserrat text-center absolute z-50 bottom-10 w-full text-black group-hover:text-white group-hover:bg-black/50">
+                        Webinar</p>
+                </div>
+                <!-- Item 4 -->
+                <div class=" hidden duration-700 ease-in-out group" data-carousel-item>
+                    <img src="../src/css/img/people-working-out-indoors-together-with-dumbbells.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50 group-hover:opacity-100"
+                        alt="...">
+                    <p
+                        class="font-extrabold font-Montserrat text-center absolute z-50 bottom-10 w-full text-black group-hover:text-white group-hover:bg-black/50">
+                        Latihan Berama</p>
+                </div>
+                <!-- Item 5 -->
+                <div class="hidden duration-700 ease-in-out group" data-carousel-item>
+                    <img src="../src/css/img/side-view-three-colleagues-discussing-project-sitting-office-desk.jpg"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-50 group-hover:opacity-100"
+                        alt="...">
+                    <p
+                        class="font-extrabold font-Montserrat text-center absolute z-50 bottom-10 w-full text-black group-hover:text-white group-hover:bg-black/50">
+                        Konsultasi</p>
+                </div>
+            </div>
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                    data-carousel-slide-to="0"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                    data-carousel-slide-to="1"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                    data-carousel-slide-to="2"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                    data-carousel-slide-to="3"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                    data-carousel-slide-to="4"></button>
+            </div>
+            <!-- Slider controls -->
+            <button type="button"
+                class="absolute top-0 left-0 z-30 flex items-center justify-center h-full md:ml-48 px-4 cursor-pointer group focus:outline-none"
+                data-carousel-prev>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1 1 5l4 4" />
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button"
+                class="absolute top-0 right-0 z-30 flex items-center justify-center h-full md:mr-48 px-4 cursor-pointer group focus:outline-none"
+                data-carousel-next>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>
+    </article>
+
+    <!-- profile -->
+    <section id="profile" name="profile" style="background-image: url(../src/css/img/bg-motivation.jpg); background-size: cover;" class="w-full mx-auto md:grid md:grid-cols-2">
+        <div class="container relative px-4">
+            <img width="278" height="350" class="max-w-full mx-auto" src="../src/css/img/foto profil no bg.png"
+                alt="nikoo">
+            <span class="absolute -bottom-2 -translate-x-1 md:translate-x-2 opacity-5">
+                <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#0F62FE"
+                        d="M51,-46.3C66.9,-35,81.3,-17.5,81.4,0.2C81.6,17.8,67.5,35.6,51.6,48.9C35.6,62.1,17.8,70.6,3,67.7C-11.9,64.7,-23.8,50.2,-38.7,37C-53.5,23.8,-71.3,11.9,-73.5,-2.2C-75.8,-16.4,-62.4,-32.7,-47.6,-44C-32.7,-55.3,-16.4,-61.6,0.6,-62.2C17.5,-62.7,35,-57.6,51,-46.3Z"
+                        transform="translate(100 100) scale(1.2)" />
+                </svg>
+            </span>
+        </div>
+        <div class="container bg-white/75 px-5 w-full border-2 border-blue-800 rounded-lg">
+            <h1 class="font-Montserrat text-xl text-center p-1">Niko Achmad</h1>
+            <h2 class="font-Poppins text-center text-sm font-semibold pb-2">Universitas PGRI Kanjuruhan Malang</h2>
+            <p class="font-Poppins text-justify font-semibold">"Kewirausahaan dan kesehatan adalah dua tiang kuat yang mendukung perjalanan kehidupan kita. Seperti halnya mengelola bisnis, menjaga kesehatan juga membutuhkan rencana, dedikasi, dan inovasi. Sepanjang perjalanan ini, ingatlah bahwa kesuksesan sejati tidak hanya diukur dari pencapaian finansial, tetapi juga dari keseimbangan yang kita pertahankan antara semangat wirausaha dan kebugaran fisik serta mental. Dengan mengasah kreativitas sekaligus merawat tubuh dan pikiran, kita dapat menciptakan narasi yang menginspirasi, memimpin dengan teladan, dan menggapai puncak-puncak baru dalam kedua ranah ini."</p>
+
+        </div>
+
+
+    </section>
+    <!-- form konsultasi -->
+    <section id="form" name="form" class="text-white py-16 my-6 md:grid md:grid-cols-2"
+        style="background-image: url(../src/css/img/bg-laptop.jpg); background-size: cover;">
+        <div class="container mx-auto md:flex md:flex-col md:items-center md:py-20">
+            <h1 class="text-center">Kami telah membantu lebih dari 200 Perusahaan dengan konsep <span
+                    class="font-extrabold text-yellow-300">Layanan Tanpa Batas</span></h1>
+            <h2 class="text-center">"Akselerasi Transformasi Bisnis Melalui Inovasi Teknologi Digital."</h2>
+        </div>
+        <div class="container mt-8 px-5 md:bg-black/30 md:rounded-md">
+            <h1 class="font-semibold font-Lato">Manfaatkan Layanan Kami</h1>
+            <p class="font-Poppins text-sm font-normal"><span class="text-red-600">*</span>Isi formulir dibawah ini agar
+                kami dapat segera membantu Anda.
+            </p>
+            <form class="shadow-sm font-bold" id="form" name="form" onsubmit="return validate()" method="post">
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="email" name="email" id="email"
+                        class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" " required />
+                    <label for="email"
+                        class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                        address</label>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="password" name="password" id="password"
+                        class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" " required />
+                    <label for="password"
+                        class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="password" name="repeat_password" id="repeat_password"
+                        class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" " required />
+                    <label for="repeat_password"
+                        class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
+                        password</label>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="first_name" id="first_name"
+                            class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" " required />
+                        <label for="first_name"
+                            class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
+                            name</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="last_name" id="last_name"
+                            class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" " required />
+                        <label for="last_name"
+                            class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last
+                            name</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="tel" pattern="[0-9]{12}" name="phone" id="phone"
+                            class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" " required />
+                        <label for="phone"
+                            class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
+                            number</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="company" id="company"
+                            class="block py-2.5 px-0 w-full text-sm  text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" " required />
+                        <label for="company"
+                            class="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company</label>
+                    </div>
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- end form konsultasi -->
+
+    <!-- footer -->
+    <section id="contact" class="mt-16 md:grid md:grid-cols-2">
+        <div class="container mx-auto">
+            <img src="../src/css/img/logo final.svg" class="w-[50vw] mx-auto my-10" alt="logo">
+            <h2 class="text-center"><span class="text-blue-600  hover:text-blue-950"><a href="">Office No. 56, Jalan
+                        Raya Pakisaji,
+                        Kabupaten Malang,
+                        Jawa Timur(65162)</a></span>
+                || E-mail:<span class="text-blue-600 hover:text-blue-950"><a href="">cs@healthtech.com</a></span> ||
+                Telepon: <span class="text-blue-600  hover:text-blue-950"><a href="">(+62)89673457965</a></span>
+            </h2>
+        </div>
+        <div class="container grid grid-cols-2 auto-cols-fr gap-1 p-5 mx-auto md:flex md:p-0 md:w-max">
+            <div class="text-center md:px-4 ">
+                <h1 class="font-bold md:text-left">Profil Kami</h1>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Tentang Perusahaan</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Pendiri Perusahaan</a></p>
+            </div>
+            <div class="text-center md:px-4">
+                <h1 class="font-bold md:text-left"><a href="#">Insight</a></h1>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Blog</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Testimoni</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Portofolio</a></p>
+            </div>
+            <div class="text-center col-span-2 md:px-4">
+                <h1 class="font-bold md:text-left">Pelayanan</h1>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Training and Consulting</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Webinar</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Tracking Kesehatan</a></p>
+                <p class="hover:text-blue-600 md:text-left"><a href="#">Dukungan Komunitas</a></p>
+            </div>
+        </div>
+
+    </section>
+    <footer class="absolute mt-8 w-full z-50">
+        <div class="container px-5 w-full bg-slate-900 h-9">
+            <p class="text-white text-base">© Copyright 2023 - HealthTech</p>
+        </div>
+    </footer>
+
+    <!-- contact flowbubble -->
+    <div class="menu">
+        <div class="toggle">
+            <ion-icon name="share-social"></ion-icon>
+        </div>
+
+        <li style="--i:0;--clr:#1877f2">
+            <a href="https://www.facebook.com/niko.achmad.3?mibextid=ZbWKwL"><ion-icon
+                    name="logo-facebook"></ion-icon></a>
+        </li>
+        <li style="--i:1;--clr:#25d366">
+            <a href="https://wa.me/+6289673457965"><ion-icon name="logo-whatsapp"></ion-icon></a>
+        </li>
+        <li style="--i:2;--clr:#c32aa3">
+            <a href="https://instagram.com/nikoachmad_koo?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"><ion-icon
+                    name="logo-instagram"></ion-icon></a>
+        </li>
+        <li style="--i:3;--clr:#1b1e21">
+            <a href="https://github.com/Koozee"><ion-icon name="logo-github"></ion-icon></a>
+        </li>
+        <li style="--i:7;--clr:#000000">
+            <a href="mailto:nicoachmad15@gmail.com"><ion-icon name="mail-sharp"></ion-icon></a>
+        </li>
+    </div>
+    <!-- contact flowbubble -->
+
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+</body>
+
+</html>
