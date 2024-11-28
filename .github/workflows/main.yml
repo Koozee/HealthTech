@@ -1,0 +1,60 @@
+name: CI/CD Coba Aja Dulu Mas
+
+on:
+  push:
+    branches:
+      - main  # Workflow berjalan saat push ke branch main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image and Save Logs
+        run: |
+          docker build -t koozee/healthtech:latest . 2>&1 | tee build_log.txt
+
+      - name: Save Build Log as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-log
+          path: build_log.txt  # Menyimpan file log sebagai artifact
+
+      - name: Push Docker Image to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push koozee/healthtech:latest 2>&1 | tee push_log.txt
+
+      - name: Save Push Log as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: push-log
+          path: push_log.txt  # Menyimpan log push sebagai artifact
+
+  deploy:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH to EC2 and Deploy with Logging
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_PUBLIC_IP }}
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/healthtech
+            docker-compose down 2>&1 | tee deploy_log.txt
+            docker-compose pull koozee/healthtech 2>&1 | tee -a deploy_log.txt
+            docker-compose up -d 2>&1 | tee -a deploy_log.txt
+        continue-on-error: true  
+
+      - name: Download Deployment Logs
+        uses: actions/download-artifact@v3
+        with:
+          name: deploy-log
+          path: ./  # Download logs for later steps
