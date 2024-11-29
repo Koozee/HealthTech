@@ -36,24 +36,28 @@ jobs:
           name: push-log
           path: push_log.txt  # Menyimpan log push sebagai artifact
 
-  deploy:
-    needs: build  
-    runs-on: ubuntu-latest
-    steps:
-      - name: SSH to EC2 and Deploy with Logging
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: ubuntu
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          script: |
-            cd /home/ubuntu/healthtech
-            sudo docker-compose down 2>&1 | sudo tee deploy_log.txt
-            sudo docker-compose pull koozee/healthtech 2>&1 | sudo tee -a deploy_log.txt
-            sudo docker-compose up -d 2>&1 | sudo tee -a deploy_log.txt
+deploy:
+  needs: build  
+  runs-on: ubuntu-latest
+  steps:
+    - name: SSH to EC2 and Deploy with Logging
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_PUBLIC_IP }}
+        username: ubuntu
+        key: ${{ secrets.EC2_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntu/healthtech
+          sudo docker-compose down 2>&1 | sudo tee deploy_log.txt
+          sudo docker-compose pull koozee/healthtech 2>&1 | sudo tee -a deploy_log.txt
+          sudo docker-compose up -d 2>&1 | sudo tee -a deploy_log.txt
 
-      - name: Upload Deployment Logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: deploy-log
-          path: deploy_log.txt  # Menyimpan deployment log dari EC2
+    - name: Download Deployment Logs from EC2
+      run: |
+        scp -o StrictHostKeyChecking=no -i <(echo "${{ secrets.EC2_PRIVATE_KEY }}") ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ubuntu/healthtech/deploy_log.txt deploy_log.txt
+
+    - name: Upload Deployment Logs as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: deploy-log
+        path: deploy_log.txt
